@@ -1,4 +1,4 @@
-"use client"
+
 
 import { FC } from "react";
 import { Content } from "@prismicio/client";
@@ -50,11 +50,23 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           <PrismicRichText field={slice.primary.heading} />
         </div>
         
-        <div className="mt-6 max-w-md text-lg text-neutral-100">
+        <FadeIn 
+          className="mt-6 max-w-md text-lg text-neutral-100 translate-y-8"
+          vars={{
+            delay: 1,
+            duration: 1.3,
+          }}
+        >
           <PrismicRichText field={slice.primary.body} />
-        </div>
+        </FadeIn>
         
-        <div className="mt-8">
+        <FadeIn 
+          className="mt-8 translate-y-5"
+          vars={{
+            delay: 1.7,
+            duration: 1.1
+          }}  
+        >
           {slice.primary.button.map((link) => (
             <PrismicNextLink
               key={link.key}
@@ -68,7 +80,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
               )}
             />
           ))}
-        </div>
+        </FadeIn>
       </div>
     </Bounded>
   );
