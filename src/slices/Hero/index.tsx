@@ -1,9 +1,16 @@
+"use client"
+
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { Bounded } from "@/components/Bounded";
 import clsx from "clsx";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { FadeIn } from "@/components/FadeIn";
+
+gsap.registerPlugin(useGSAP);
 
 /**
  * Props for `Hero`.
@@ -14,21 +21,29 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
  * Component for "Hero" Slices.
  */
 const Hero: FC<HeroProps> = ({ slice }) => {
+
+  
   return (
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="relative min-h-screen overflow-hidden bg-neutral-950"
     >
-      <div className="absolute inset-0 scale-125">
+      <FadeIn 
+        className="bg-image absolute inset-0 scale-125"
+        vars={{
+          scale: 1,
+          opacity: .5
+        }}  
+      >
         <PrismicNextImage 
           field={slice.primary.image} 
           alt="" 
           priority
           fill
-          className="object-cover opacity-50"  
+          className="object-cover"  
           />
-      </div>
+      </FadeIn>
 
       <div className="relative flex flex-col h-screen justify-center">
         <div className="max-w-xl text-6xl leading-tight text-neutral-50 md:text-7xl lg:text-8xl font-display">
