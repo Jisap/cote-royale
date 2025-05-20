@@ -33,12 +33,35 @@ export const RevealText = ({
   const words = asText(field).split(" ");           // asText(field): Esta función de Prismic convierte el contenido del RichTextField en una cadena de texto plano.
                                                     // split(" "): Divide la cadena en un array de palabras usando el espacio como delimitador. 
   useGSAP(() => {
-    gsap.to(".reveal-text-word", {
-      y: 0,                                         // Mueve a su posición original desde translate-y-[120%] (de abajo hacia arriba)
-      stagger: staggerAmount,                       // Cada palabra comenzará su animación segundos después de la anterior
-      duration,                                     // Duración de la animación para cada palabra
-      ease: "power3.out",                           // Efecto de aceleración y desaceleración para la animación
-    })
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)",    // Solo ejecuta la animación si el usuario no tiene activada la opción de "reducir movimiento" en el navegador
+      () => {
+        gsap.to(".reveal-text-word", {
+          y: 0,                                          // Mueve a su posición original desde translate-y-[120%] (de abajo hacia arriba)
+          stagger: staggerAmount,                        // Cada palabra comenzará su animación segundos después de la anterior
+          duration,                                      // Duración de la animación para cada palabra
+          ease: "power3.out",                            // Efecto de aceleración y desaceleración para la animación
+        })
+      }
+    )
+
+    mm.add("(prefers-reduced-motion: reduce)",            // Si la opción de "reducir movimiento" está activada, la animación se ejecuta de forma distinta a la original
+      () => {
+        gsap.to(".reveal-text-word", {
+          y: 0,
+          stagger: 0,
+          duration: 0.5,
+          ease: "none",
+          opacity: 1,
+        })
+      }
+    )
+
+
+
+
+    
   }, { scope: componentRef })
 
   return (
