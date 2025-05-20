@@ -9,6 +9,7 @@ import clsx from "clsx";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { FadeIn } from "@/components/FadeIn";
+import { RevealText } from "@/components/RevealText";
 
 gsap.registerPlugin(useGSAP);
 
@@ -46,9 +47,15 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       </FadeIn>
 
       <div className="relative flex flex-col h-screen justify-center">
-        <div className="max-w-xl text-6xl leading-tight text-neutral-50 md:text-7xl lg:text-8xl font-display">
-          <PrismicRichText field={slice.primary.heading} />
-        </div>
+        <RevealText 
+          className="max-w-xl text-6xl leading-none text-neutral-50 md:text-7xl lg:text-8xl font-display"
+          id="hero-heading"
+          field={slice.primary.heading}
+          staggerAmount={0.2}
+          duration={1.7}
+          as="h1"
+        />
+          
         
         <FadeIn 
           className="mt-6 max-w-md text-lg text-neutral-100 translate-y-8"
