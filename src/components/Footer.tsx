@@ -10,7 +10,7 @@ export const Footer = () => {
         Footer
       </h2>
       <div className="container mx-auto px-6">
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 grid-cols-2 md:grid-cols-3 justify-items-center">
           <NavGroup title="Shop">
             <NavLink href="/fragrance/terra">Terra</NavLink>
             <NavLink href="/fragrance/igni">Igni</NavLink>
@@ -69,7 +69,10 @@ type NavGroupProps = {
 };
 
 const NavGroup = ({ title, children }: NavGroupProps) => (
-  <nav aria-labelledby={`${title.toLowerCase()}-heading`}>
+  <nav 
+    aria-labelledby={`${title.toLowerCase()}-heading`}
+    className="flex flex-col items-center text-center"  
+  >
     <h3
       id={`${title.toLowerCase()}-heading`}
       className="mb-6 text-xl font-medium"

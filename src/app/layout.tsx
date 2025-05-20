@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${raleway.variable} ${gambarino.variable} antialiased`}>
-      <body>
+      <body className="bg-neutral-900 text-white">
         <main>
           {/* Navbar */}
           {children}
