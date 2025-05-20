@@ -31,7 +31,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
       className="relative min-h-screen overflow-hidden bg-neutral-950"
     >
       <FadeIn 
-        className="bg-image absolute inset-0 scale-125"
+        className="bg-image absolute inset-0 motion-safe:scale-125"
         vars={{
           scale: 1,
           opacity: .5
@@ -42,7 +42,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           alt="" 
           priority
           fill
-          className="object-cover"  
+          className="object-cover motion-reduce:opacity-50"  
           />
       </FadeIn>
 

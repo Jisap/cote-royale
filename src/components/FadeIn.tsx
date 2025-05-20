@@ -16,16 +16,36 @@ type FadeInProps ={
 export const FadeIn = ({ children, vars={}, className }: FadeInProps) => {
   
   const containerRef = useRef<HTMLDivElement>(null);
+
+  
   
     useGSAP(
       () => {
-        gsap.to(containerRef.current, {
-          duration: 5,
-          opacity: 1,
-          ease: "power3.out",
-          y: 0,
-          ...vars,
-        })
+        const mm = gsap.matchMedia();
+
+        mm.add("(prefers-reduced-motion: no-preference)",    // Solo ejecuta la animación si el usuario no tiene activada la opción de "reducir movimiento" en el navegador
+          () => {
+            gsap.to(containerRef.current, {
+              duration: 5,
+              opacity: 1,
+              ease: "power3.out",
+              y: 0,
+              ...vars,
+            })
+          }
+        )
+
+        mm.add("(prefers-reduced-motion: reduce)",    // Si la opción de "reducir movimiento" está activada, la animación se ejecuta de forma distinta a la original
+          () => {
+            gsap.to(containerRef.current, {
+              duration: .5,
+              opacity: 1,
+              ease: "none",
+              y: 0,
+              stagger: 0
+            })
+          }
+        )
       }, { scope: containerRef }
     )
   
