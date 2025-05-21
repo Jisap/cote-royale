@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${raleway.variable} ${gambarino.variable} antialiased`}>
       <body className="bg-neutral-900 text-white">
-        <main>
+        <main className="pt-14 md:pt-16">
           <Navbar />
           {children}
         </main>

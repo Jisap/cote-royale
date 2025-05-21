@@ -9,8 +9,8 @@ export const Footer = () => {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="container mx-auto px-6">
-        <div className="grid gap-10 grid-cols-2 md:grid-cols-3 justify-items-center">
+      <div className="container mx-auto">
+        <div className="grid gap-30 grid-cols-2 md:grid-cols-3 justify-items-center">
           <NavGroup title="Shop">
             <NavLink href="/fragrance/terra">Terra</NavLink>
             <NavLink href="/fragrance/igni">Igni</NavLink>
