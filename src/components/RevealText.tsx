@@ -19,7 +19,7 @@ type RevealTextProps = {
 }
 
 export const RevealText = ({ 
-  field,                                            //  campo de texto enriquecido que viene de Prismic     
+  field,                                            // campo de texto enriquecido que viene de Prismic     
   id,                                               // id único para cada palabra
   className,                                        // Clases adicionales para cada contenedor 
   staggerAmount=0.1,                                // Controla el retraso entre la animación de cada palabra
@@ -82,6 +82,10 @@ export const RevealText = ({
         >
           <span className="reveal-text-word mt-0 inline-block translate-y-[120%] will-change-transform">
             {word}
+            {index <words.length -1 // Si no es la última palabra, agregaremos un espacio al final de cada palabra
+              ? <>&nbsp;</> 
+              : null
+            }
           </span>
         </span>
       ))}
