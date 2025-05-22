@@ -3,13 +3,13 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicNextImage } from "@prismicio/next";
 import { Bounded } from "@/components/Bounded";
-import clsx from "clsx";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { FadeIn } from "@/components/FadeIn";
 import { RevealText } from "@/components/RevealText";
+import { ButtonLink } from "@/components/ButtonLink";
 
 gsap.registerPlugin(useGSAP);
 
@@ -74,18 +74,26 @@ const Hero: FC<HeroProps> = ({ slice }) => {
             duration: 1.1
           }}  
         >
-          {slice.primary.button.map((link) => (
-            <PrismicNextLink
+          {slice.primary.button.map((link) => ( // link representa todas las opciones definidas en la prop button del slide de hero
+            // <PrismicNextLink
+            //   key={link.key}
+            //   field={link}
+            //   className={clsx(
+            //     "inline-flex items-center justify-center px-12 py-4 text-center font-extrabold tracking-wider uppercase transition-colors duration-300",
+            //     link.variant === "Secondary" 
+            //       ? "border border-white text-white hover:bg-white/20" 
+            //       : "bg-white text-black hover:bg-white/80",
+            //       "w-fit"
+            //   )}
+            // />
+
+            <ButtonLink
               key={link.key}
               field={link}
-              className={clsx(
-                "inline-flex items-center justify-center px-12 py-4 text-center font-extrabold tracking-wider uppercase transition-colors duration-300",
-                link.variant === "Secondary" 
-                  ? "border border-white text-white hover:bg-white/20" 
-                  : "bg-white text-black hover:bg-white/80",
-                  "w-fit"
-              )}
+              className="w-fit"
+              variant="Secondary"
             />
+
           ))}
         </FadeIn>
       </div>

@@ -6,6 +6,7 @@ import { Bounded } from "@/components/Bounded";
 import { FadeIn } from "@/components/FadeIn";
 import { createClient } from "@/prismicio";
 import { formatPrice } from "@/utils/formatters";
+import { ButtonLink } from "@/components/ButtonLink";
 
 
 /**
@@ -78,7 +79,13 @@ const ProductFeature: FC<ProductFeatureProps> = async({ slice }) => {
               </h3>
 
               <p className="mt-2 text-gray-400">Eau de Parfum</p>
-              <p>Button Link</p>
+              <ButtonLink 
+                document={fragance}
+                variant="Secondary"
+                className="mt-6"
+              >
+                Shop Now
+              </ButtonLink>
             </div>
 
             <p className="mt-4 text-gray-100" aria-label="Product Price">
