@@ -5,6 +5,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import { Bounded } from "@/components/Bounded";
 import { FadeIn } from "@/components/FadeIn";
 import { createClient } from "@/prismicio";
+import { formatPrice } from "@/utils/formatters";
 
 
 /**
@@ -23,6 +24,7 @@ const ProductFeature: FC<ProductFeatureProps> = async({ slice }) => {
     ? await client.getByID<Content.FraganceDocument>(slice.primary.fragance.id)
     : null
 
+  const formattedPrice = formatPrice(fragance?.data.price);
 
   return (
     <Bounded
@@ -68,7 +70,7 @@ const ProductFeature: FC<ProductFeatureProps> = async({ slice }) => {
 
           <div className="flex justify-between p-10 pt-4">
             <div className="space-y-1">
-              <h3>
+              <h3 className="font-display text-4xl">
                 <PrismicText 
                   field={fragance?.data.title}
                   fallback="Fragance"
@@ -76,7 +78,12 @@ const ProductFeature: FC<ProductFeatureProps> = async({ slice }) => {
               </h3>
 
               <p className="mt-2 text-gray-400">Eau de Parfum</p>
+              <p>Button Link</p>
             </div>
+
+            <p className="mt-4 text-gray-100" aria-label="Product Price">
+              <span>{formattedPrice}</span>
+            </p>
           </div>
         </FadeIn>
       </div>
