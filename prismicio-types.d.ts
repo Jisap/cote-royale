@@ -127,6 +127,7 @@ export type FraganceDocument<Lang extends string = string> =
   >;
 
 type HomepageDocumentDataSlicesSlice =
+  | FraganceListSlice
   | ProductFeatureSlice
   | ScrollTextSlice
   | HeroSlice;
@@ -195,6 +196,98 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = FraganceDocument | HomepageDocument;
+
+/**
+ * Item in *FraganceList → Default → Primary → Fragances*
+ */
+export interface FraganceListSliceDefaultPrimaryFragancesItem {
+  /**
+   * Fragance field in *FraganceList → Default → Primary → Fragances*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragance_list.default.primary.fragances[].fragance
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  fragance: prismic.ContentRelationshipField<"fragance">;
+}
+
+/**
+ * Primary content in *FraganceList → Default → Primary*
+ */
+export interface FraganceListSliceDefaultPrimary {
+  /**
+   * EyeBrow field in *FraganceList → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragance_list.default.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  eyebrow: prismic.KeyTextField;
+
+  /**
+   * Heading field in *FraganceList → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragance_list.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Body field in *FraganceList → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragance_list.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Fragances field in *FraganceList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: fragance_list.default.primary.fragances[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  fragances: prismic.GroupField<
+    Simplify<FraganceListSliceDefaultPrimaryFragancesItem>
+  >;
+}
+
+/**
+ * Default variation for FraganceList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FraganceListSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FraganceListSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FraganceList*
+ */
+type FraganceListSliceVariation = FraganceListSliceDefault;
+
+/**
+ * FraganceList Shared Slice
+ *
+ * - **API ID**: `fragance_list`
+ * - **Description**: FraganceList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FraganceListSlice = prismic.SharedSlice<
+  "fragance_list",
+  FraganceListSliceVariation
+>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -434,6 +527,11 @@ declare module "@prismicio/client" {
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      FraganceListSlice,
+      FraganceListSliceDefaultPrimaryFragancesItem,
+      FraganceListSliceDefaultPrimary,
+      FraganceListSliceVariation,
+      FraganceListSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

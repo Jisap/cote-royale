@@ -1,0 +1,64 @@
+{
+  "id": "fragance_list",
+  "type": "SharedSlice",
+  "name": "FraganceList",
+  "description": "FraganceList",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "EyeBrow",
+            "placeholder": ""
+          }
+        },
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em"
+          }
+        },
+        "fragances": {
+          "type": "Group",
+          "config": {
+            "label": "Fragances",
+            "repeat": true,
+            "fields": {
+              "fragance": {
+                "type": "Link",
+                "config": {
+                  "label": "Fragance",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    "fragance"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
