@@ -28,11 +28,11 @@ export const Lazy = ({ rootMargin, children, ...restProps }: LazyProps) => {
       threshold: 0,}                                                    //           2º Permite especificar un margen alrededor del elemento raíz 
     )
 
-    if (currentRef) observer.observe(currentRef)                         // Si la referencia al div existe, se le dice al observer que comience a observar este elemento.
+    if (currentRef) observer.observe(currentRef)                        // Si la referencia al div existe, se le dice al observer que comience a observar este elemento.
 
-      return () => {                                                     // Se limpia el observer cuando el componente se desmonta o antes de que el efecto se vuelva a ejecutar
-        if(currentRef) observer.unobserve(currentRef);
-      }
+    return () => {                                                      // Se limpia el observer cuando el componente se desmonta o antes de que el efecto se vuelva a ejecutar
+      if(currentRef) observer.unobserve(currentRef);
+    }
   }, [rootMargin])
 
 
