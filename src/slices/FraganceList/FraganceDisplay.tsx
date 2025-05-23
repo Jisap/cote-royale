@@ -1,5 +1,6 @@
 import { ButtonLink } from "@/components/ButtonLink";
 import { FadeIn } from "@/components/FadeIn"
+import { FraganceAttributes } from "@/components/FraganceAttributes";
 import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
@@ -48,6 +49,12 @@ export const FranganceDisplay = async({ id }: FranganceDisplayProps) => {
             field={fragance.data.description}
           />
         </div>
+
+        <FraganceAttributes 
+          scentProfile={fragance.data.scent_profile}
+          mood={fragance.data.mood}
+          className="mb-10"
+        />
 
         <div className="flex flex-wrap gap-4">
           <ButtonLink 
