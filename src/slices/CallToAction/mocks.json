@@ -1,0 +1,52 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Accept"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Fugiat deserunt amet esse do cillum quis anim."
+						}
+					}
+				]
+			},
+			"button": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"key": "5bc4e377-b722-44c3-9f59-4380b8cbae6a",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "http://twitter.com",
+							"text": "caught",
+							"variant": "Secondary"
+						}
+					}
+				]
+			},
+			"eyebrow": {
+				"__TYPE__": "FieldContent",
+				"value": "improve",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]
