@@ -4,9 +4,10 @@ import { useGSAP } from "@gsap/react";
 import { asText, RichTextField } from "@prismicio/client"
 import clsx from "clsx";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type RevealTextProps = {
   field: RichTextField;
@@ -16,6 +17,8 @@ type RevealTextProps = {
   as?: React.ElementType;
   duration?: number;
   align?: "center" | "start" | "end";
+  triggerStart?: string;
+  triggerEnd?: string;
 }
 
 export const RevealText = ({ 
@@ -25,7 +28,9 @@ export const RevealText = ({
   staggerAmount=0.1,                                // Controla el retraso entre la animación de cada palabra
   as: Component = "div",                            // Expecifica  que etiqueta html se usará como contenedor principal 
   duration=0.8,                                     // Duración de la animación de revelado de cada palabra
-  align="start"                                     // Controla la alineación del texto
+  align="start",                                     // Controla la alineación del texto
+  triggerStart="top 80%",
+  triggerEnd="bottom 20%"
 }: RevealTextProps) => {
 
   const componentRef = useRef<HTMLDivElement>(null);
@@ -42,6 +47,11 @@ export const RevealText = ({
           stagger: staggerAmount,                        // Cada palabra comenzará su animación segundos después de la anterior
           duration,                                      // Duración de la animación para cada palabra
           ease: "power3.out",                            // Efecto de aceleración y desaceleración para la animación
+          scrollTrigger: {
+            trigger: componentRef.current,               // El elemento que activa el ScrollTrigger
+            start: triggerStart,                         // Cuando el ScrollTrigger comienza
+            end: triggerEnd,                             // Cuando el ScrollTrigger termina
+          }
         })
       }
     )

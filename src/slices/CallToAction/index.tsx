@@ -35,29 +35,31 @@ const CallToAction: FC<CallToActionProps> = ({ slice }) => {
           id="cta-heading"
           field={slice.primary.heading}
           as="h2"
-          className="font-display mx-auto max-w-3xl sm:text-6xl md:text-7xl"
+          className="font-display mx-auto max-w-3xl text-5xl sm:text-6xl md:text-7xl"
           align="center"
           staggerAmount={0.1}
           duration={0.8}
         />
 
         <FadeIn
-          className="mx-auto max-w-2xl translate-y-2 text-lg text-gray-300"
+          className="mx-auto max-w-2xl translate-y-2 text-lg text-gray-300 text-balance"
           vars={{ duration: 0.8, delay: 0.4}}
         >
           <PrismicRichText field={slice.primary.body} />
         </FadeIn>
 
-        {slice.primary.button.map((link) => (
-          <FadeIn
-            key={link.key}
-          >
-            <ButtonLink
-              field={link}
-              className={link.variant}
-            />
-          </FadeIn>
-        ))}
+        <div className="mt-10">
+          {slice.primary.button.map((link) => (
+            <FadeIn
+              key={link.key}
+            >
+              <ButtonLink
+                field={link}
+                className={link.variant}
+              />
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </Bounded>
   );
