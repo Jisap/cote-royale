@@ -22,7 +22,7 @@ const Video: FC<VideoProps> = ({ slice }) => {
         Cote Royale Video Reel
       </h2>
 
-      <Lazy rootMargin="1500px" className="relative overflow-hidden md:aspect-video md:h-auto">
+      <Lazy rootMargin="1500px" className="relative h-screen overflow-hidden md:aspect-video md:h-auto">
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${slice.primary.youtube_video_id}?autoplay=1&mute=1&loop=1&playlist=${slice.primary.youtube_video_id}`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
