@@ -16,7 +16,11 @@ const Video: FC<VideoProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      {slice.primary.youtube_video_id}
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${slice.primary.youtube_video_id}?autoplay=1&mute=1&loop=1&playlist=${slice.primary.youtube_video_id}`}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        className="pointer-events-none absolute left-1/2 aspect-video h-full -translate-x-1/2"
+      />
     </section>
   );
 };
