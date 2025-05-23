@@ -15,7 +15,11 @@ const Video: FC<VideoProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="bg-black"
     >
+      <h2 className="sr-only">
+        Cote Royale Video Reel
+      </h2>
       <iframe
         src={`https://www.youtube-nocookie.com/embed/${slice.primary.youtube_video_id}?autoplay=1&mute=1&loop=1&playlist=${slice.primary.youtube_video_id}`}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
