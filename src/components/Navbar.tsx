@@ -66,13 +66,15 @@ export const Navbar = ({ settings }: NavbarProps) => {
           </button>
 
           <div className='absolute left-1/2 -translate-x-1/2 transform'>
-            <Image
-              src="/logo.svg"
-              alt="CÔTE ROYALE Paris"
-              width={180}
-              height={30}
-              className='w-32 md:w-44'
-            />
+            <Link href="/">
+              <Image
+                src="/logo.svg"
+                alt="CÔTE ROYALE Paris"
+                width={180}
+                height={30}
+                className='w-32 md:w-44'
+              />
+            </Link>
           </div>
 
           <div className='flex'>
