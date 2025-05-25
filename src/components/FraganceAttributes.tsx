@@ -22,19 +22,19 @@ const MOODS: Record<Content.FraganceDocumentData["mood"], AttributeData> = { // 
   refreshing: {label: "Refreshing & Invigorating", Icon: LuZap},
 }
 
-type FraganceAttributesProps = {                                     // Tipos para fragancias
+type FraganceAttributesProps = {                                           // Tipos para fragancias
   scentProfile: Content.FraganceDocumentData["scent_profile"],
   mood: Content.FraganceDocumentData["mood"],
   className?: string,
 }
 
-export const FraganceAttributes = ({ 
+export const FraganceAttributes = ({                                       // El componente recibe la variante de fragancia scent y mood definida en el repositorio de Prismic
   scentProfile: providedScentProfile, 
   mood: providedMood, 
   className 
 }: FraganceAttributesProps) => {
 
-  const scentProfile = SCENT_PROFILES[providedScentProfile];
+  const scentProfile = SCENT_PROFILES[providedScentProfile];               // La define en una variable y las renderiza
   const mood = MOODS[providedMood];
 
   return(

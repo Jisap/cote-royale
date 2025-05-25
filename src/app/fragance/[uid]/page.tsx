@@ -7,6 +7,9 @@ import { createClient } from "@/prismicio";
 //import { components } from "@/slices";
 import { Bounded } from "@/components/Bounded";
 import { PrismicNextImage } from "@prismicio/next";
+import { PrismicRichText, PrismicText } from "@prismicio/react";
+import { FraganceAttributes } from "@/components/FraganceAttributes";
+import { formatPrice } from "@/utils/formatters";
 
 type Params = { uid: string };
 
@@ -18,7 +21,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   return (
     <Bounded>
       <div className="grid grid-cols-1 items-center gap-10 pb-10 lg:grid-cols-2">
-        <div className="relative">
+        <div className="relative mb-14 flex justify-center pb-10">
           <PrismicNextImage 
             field={page.data.bottle_image}
             width={600}
@@ -34,6 +37,36 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             className="relative"
           />
         </div>
+
+        {/* product info section */}
+        <div className="text-white">
+          <h1 className="font-display mb-4 border-b border-neutral-700 pb-2 text-4xl md:text-5xl">
+            <PrismicText field={page.data.title} fallback="Fragrance"/>
+          </h1>
+
+          <div className="space-y-6">
+            <p className="text-md font-semibold">
+              Eau de Parfum Spray
+            </p>
+
+            <PrismicRichText field={page.data.description} />
+
+            <FraganceAttributes 
+              mood={page.data.mood}
+              scentProfile={page.data.scent_profile}
+            />
+
+            <p className="mt-10 text-3xl font-light">
+              {formatPrice(page.data.price)}
+            </p>
+
+            <button className="w-full bg-white py-3 font-medium text-black uppercase transition hover:bg-neutral-200 duration-200">
+              Add to Bag
+            </button>
+          </div>
+        </div>
+
+
       </div>
     </Bounded>
   )
