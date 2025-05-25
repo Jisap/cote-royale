@@ -10,6 +10,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, PrismicText } from "@prismicio/react";
 import { FraganceAttributes } from "@/components/FraganceAttributes";
 import { formatPrice } from "@/utils/formatters";
+import { HiStar } from "react-icons/hi2";
 
 type Params = { uid: string };
 
@@ -63,6 +64,20 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             <button className="w-full bg-white py-3 font-medium text-black uppercase transition hover:bg-neutral-200 duration-200">
               Add to Bag
             </button>
+
+            <div className="flex items-center gap-4 border-t border-neutral-700 pt-6">
+              <a href="#" className="hover:text-neutral-300">
+                763 total reviews
+              </a>
+
+              <div className="flex">
+                {[...Array(4)].map((_, index) => (
+                  <HiStar key={index} className="size-5 text-white" />
+                ))}
+                <HiStar className="size-5 text-white/50" />
+              </div>
+
+            </div>
           </div>
         </div>
 
