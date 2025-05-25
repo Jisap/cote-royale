@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const { uid } = await params;
   const client = createClient();
   const page = await client.getByUID("fragance", uid).catch(() => notFound());
-
+ 
   return (
     <Bounded className="py-10">
       <div className="grid grid-cols-1 items-center gap-10 pb-10 lg:grid-cols-2">
@@ -96,9 +96,11 @@ export async function generateMetadata({
   const { uid } = await params;
   const client = createClient();
   const page = await client.getByUID("fragance", uid).catch(() => notFound());
+  const settings = await client.getSingle("settings");
+
 
   return {
-    title: asText(page.data.title) + " | Cote Royale",
+    title: asText(page.data.title) + " | " + settings.data.site_title,
     description: `Discover ${asText(page.data.title)}, the newest fragance from Cote Royale Paris.`,
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? "" }],
