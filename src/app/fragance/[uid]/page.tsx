@@ -11,6 +11,7 @@ import { PrismicRichText, PrismicText } from "@prismicio/react";
 import { FraganceAttributes } from "@/components/FraganceAttributes";
 import { formatPrice } from "@/utils/formatters";
 import { HiStar } from "react-icons/hi2";
+import { OtherFrangances } from "@/components/OtherFrangances";
 
 type Params = { uid: string };
 
@@ -20,7 +21,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const page = await client.getByUID("fragance", uid).catch(() => notFound());
 
   return (
-    <Bounded>
+    <Bounded className="py-10">
       <div className="grid grid-cols-1 items-center gap-10 pb-10 lg:grid-cols-2">
         <div className="relative mb-14 flex justify-center pb-10">
           <PrismicNextImage 
@@ -76,13 +77,13 @@ export default async function Page({ params }: { params: Promise<Params> }) {
                 ))}
                 <HiStar className="size-5 text-white/50" />
               </div>
-
+              <span>4.4/5</span>
             </div>
           </div>
         </div>
-
-
       </div>
+
+      <OtherFrangances currentFragancesUid={uid} />
     </Bounded>
   )
 }
