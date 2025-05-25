@@ -76,7 +76,10 @@ export const Navbar = ({ settings }: NavbarProps) => {
           </div>
 
           <div className='flex'>
-            <NavIcons tabIndex={isDrawerOpen ? -1 : 0} />
+            <NavIcons 
+              className='hidden md:flex'
+              tabIndex={isDrawerOpen ? -1 : 0} 
+            />
           </div>
         </div>
       </div>
@@ -125,6 +128,13 @@ export const Navbar = ({ settings }: NavbarProps) => {
               tabIndex={isDrawerOpen ? 0 : -1}
             />
           ))}
+
+          <div className='pt-4 md:hidden'>
+            <NavIcons 
+              className='justify-around'
+              tabIndex={isDrawerOpen ? -1 : 0}
+            />
+          </div>
         </nav>
       </div>
     </header>
