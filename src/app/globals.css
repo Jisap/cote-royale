@@ -17,3 +17,19 @@
     radial-gradient(at 90% 5%, hsla(200, 80%, 5%, 0.2) 0px, transparent 50%),
     radial-gradient(at 90% 80%, hsla(230, 80%, 10%, 0.2) 0px, transparent 50%);
 }
+
+/*  
+    to_bottom: El gradiente va desde la parte superior (top) hacia la parte inferior (bottom). 
+    
+    rgba(0, 0, 0, 0)_70%: El color del gradiente comienza siendo completamente transparente (rgba(0, 0, 0, 0) 
+    significa negro con 0% de opacidad) y se mantiene así hasta el 70% de la altura de la imagen (desde arriba).
+    
+    rgba(0, 0, 0, .15)_100%: Desde el 70% hasta el 100% (la parte inferior de la imagen),el gradiente transiciona a un color negro muy sutilmente opaco (rgba(0, 0, 0, .15) 
+    significa negro con 15% de opacidad). 
+*/
+
+@layer utilities {
+  .mask-image-reflection-fade {
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, .15) 100%);
+  }
+}
