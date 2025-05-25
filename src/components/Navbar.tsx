@@ -1,11 +1,13 @@
 "use client"
 
 
+import { Content } from '@prismicio/client'
+import { PrismicNextLink } from '@prismicio/next'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { HiBars3, HiMagnifyingGlass, HiShoppingBag, HiUser } from 'react-icons/hi2'
+import { HiBars3, HiMagnifyingGlass, HiShoppingBag, HiUser, HiXMark } from 'react-icons/hi2'
 
 type NavIconsProps = {
   className?: string,
@@ -42,12 +44,14 @@ const NavIcons = ({ className ="", tabIndex}: NavIconsProps) => (
   </div>
 )
 
+type NavbarProps = {
+  settings: Content.SettingsDocument
+}
 
-export const Navbar = () => {
+export const Navbar = ({ settings }: NavbarProps) => {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen)
-
 
   return (
     <header>
@@ -72,12 +76,12 @@ export const Navbar = () => {
           </div>
 
           <div className='flex'>
-            <NavIcons />
+            <NavIcons tabIndex={isDrawerOpen ? -1 : 0} />
           </div>
         </div>
       </div>
 
-
+      {/* Blur effect for the drawer */}
       <div 
         className={clsx(
           "nav-drawer-blur fixed inset-0 z-40 bg-black/40 opacity-0 transition-all duration-500",
@@ -88,6 +92,41 @@ export const Navbar = () => {
         onClick={toggleDrawer}
         aria-hidden="true"
       />
+
+      {/* The drawer itself */}
+      <div 
+        className={clsx(
+          "nav-drawer fixed top-0 left-0 z-50 h-full w-72 bg-neutral-900 p-6 transition-transform duration-500",
+          isDrawerOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+        role="dialog"
+        aria-modal={isDrawerOpen}
+      >
+        {/* Close button */}
+        <div className="flex mb-6 justify-end">
+          <button 
+            onClick={toggleDrawer} 
+            aria-label="Close Menu"
+            tabIndex={isDrawerOpen ? 0 : -1} // o puede tabular, -1 no hace nada
+            className='p-2 text-white transition-colors duration-300 hover:bg-white/10'
+          >
+            <HiXMark size={24}/>
+          </button>
+        </div>
+
+        {/* Nav links */}
+        <nav className='space-y-4' aria-label="Main Navigation">
+          {settings.data.navigation_link.map((link) => (
+            <PrismicNextLink 
+              key={link.key}
+              field={link}
+              onClick={() => setIsDrawerOpen(false)}
+              className='block border-b border-white/10 py-2 text-xl font-semibold tracking-wide text-white uppercase hover:text-gray-300'
+              tabIndex={isDrawerOpen ? 0 : -1}
+            />
+          ))}
+        </nav>
+      </div>
     </header>
   )
 }
