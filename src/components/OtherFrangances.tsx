@@ -1,6 +1,8 @@
 
 import { createClient } from "@/prismicio";
+import { formatPrice } from "@/utils/formatters";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicText } from "@prismicio/react";
 
 
 type OtherFrangancesProps = {
@@ -8,7 +10,7 @@ type OtherFrangancesProps = {
 }
 
 export const OtherFrangances = async({currentFragancesUid}: OtherFrangancesProps) => {
-  
+
   const client = createClient();
   const allFrangances = await client.getAllByType("fragance");
 
@@ -20,7 +22,7 @@ export const OtherFrangances = async({currentFragancesUid}: OtherFrangancesProps
         You may also like
       </h2>
 
-      <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {otherFrangances.map(fragance => (
           <li key={fragance.uid} className="relative">
             <PrismicNextLink 
@@ -32,9 +34,23 @@ export const OtherFrangances = async({currentFragancesUid}: OtherFrangancesProps
                   field={fragance.data.bottle_image}
                   width={600}
                   height={600}
+                  alt=""
                   className="w-full h-auto"
                 />
               </div>
+
+              <div className="mt-8 space-y-1 text-white">
+                <h3 className="font-display text-2xl">
+                  <PrismicText field={fragance.data.title} />
+                </h3>
+                <p className="text-sm text-neutral-400">
+                  Eau de Parfum
+                </p>
+                <p className="text-base font-light">
+                  {formatPrice(fragance.data.price)}
+                </p>
+              </div>
+
             </PrismicNextLink>
           </li>
         ))}
