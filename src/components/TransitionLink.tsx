@@ -24,7 +24,7 @@ export type TransitionLinkProps = {
     }
   | 
     { 
-      field: never | null;  
+      field?: never;  
       document?: never;
       href: string;                              // href como string
     }
@@ -42,7 +42,7 @@ export const TransitionLink = ({
 
   // asLInk convierte los tipos de datos de enlace de Prismic (LinkField o PrismicDocument) en una cadena de texto
   //  que representa una URL navegable.
-  
+
   const url = href ?? asLink(field ?? doc); // Si existe href se usa, sino se intenta obtener de field y sino existe tampoco de doc.
 
   if(!url){

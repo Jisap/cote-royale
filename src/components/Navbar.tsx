@@ -2,12 +2,12 @@
 
 
 import { Content } from '@prismicio/client'
-import { PrismicNextLink } from '@prismicio/next'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { HiBars3, HiMagnifyingGlass, HiShoppingBag, HiUser, HiXMark } from 'react-icons/hi2'
+import { TransitionLink } from '@/components/TransitionLink'
 
 type NavIconsProps = {
   className?: string,
@@ -66,7 +66,7 @@ export const Navbar = ({ settings }: NavbarProps) => {
           </button>
 
           <div className='absolute left-1/2 -translate-x-1/2 transform'>
-            <Link href="/">
+            <TransitionLink href="/">
               <Image
                 src="/logo.svg"
                 alt="CÔTE ROYALE Paris"
@@ -74,7 +74,7 @@ export const Navbar = ({ settings }: NavbarProps) => {
                 height={30}
                 className='w-32 md:w-44'
               />
-            </Link>
+            </TransitionLink>
           </div>
 
           <div className='flex'>
@@ -122,7 +122,7 @@ export const Navbar = ({ settings }: NavbarProps) => {
         {/* Nav links */}
         <nav className='space-y-4' aria-label="Main Navigation">
           {settings.data.navigation_link.map((link) => (
-            <PrismicNextLink 
+            <TransitionLink
               key={link.key}
               field={link}
               onClick={() => setIsDrawerOpen(false)}
