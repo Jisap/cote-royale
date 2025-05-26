@@ -4,7 +4,6 @@
 import { Content } from '@prismicio/client'
 import clsx from 'clsx'
 import Image from 'next/image'
-import Link from 'next/link'
 import React, { useState } from 'react'
 import { HiBars3, HiMagnifyingGlass, HiShoppingBag, HiUser, HiXMark } from 'react-icons/hi2'
 import { TransitionLink } from '@/components/TransitionLink'
@@ -17,30 +16,30 @@ type NavIconsProps = {
 
 const NavIcons = ({ className ="", tabIndex}: NavIconsProps) => (
   <div className={clsx("flex items-center gap-8", className)}>
-    <Link
+    <a
       href="#"
       className='text-white'
       aria-label="Search"
       tabIndex={tabIndex}
     >
       <HiMagnifyingGlass size={24} />
-    </Link>
-    <Link 
+    </a>
+    <a 
       href="#" 
       className='text-white' 
       aria-label="Account" 
       tabIndex={tabIndex}
     >
       <HiUser size={24} />
-    </Link>
-    <Link 
+    </a>
+    <a 
       href="#" 
       className='text-white' 
       aria-label="Account" 
       tabIndex={tabIndex}
     >
       <HiShoppingBag size={24} />
-    </Link>
+    </a>
   </div>
 )
 
