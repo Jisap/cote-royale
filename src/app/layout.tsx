@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { createClient } from "@/prismicio";
 import { isFilled } from "@prismicio/client";
+import { ViewTransitions } from "next-view-transitions";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -45,14 +46,16 @@ export default async function RootLayout({
 
 
   return (
-    <html lang="en" className={`${raleway.variable} ${gambarino.variable} antialiased`}>
-      <body className="bg-neutral-900 text-white">
-        <Navbar settings={settings} />
-        <main className="pt-14 md:pt-16">
-          {children}
-        </main>
-        <Footer />
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en" className={`${raleway.variable} ${gambarino.variable} antialiased`}>
+        <body className="bg-neutral-900 text-white">
+          <Navbar settings={settings} />
+          <main className="pt-14 md:pt-16">
+            {children}
+          </main>
+          <Footer />
+        </body>
+      </html>
+    </ViewTransitions> 
   );
 }
