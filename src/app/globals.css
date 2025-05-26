@@ -35,6 +35,7 @@
 }
 
 /* Animation Keyframes */
+/* Define una animación de "aparición gradual"(fade-in) con un ligero desplazamiento vertical y escalado. */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -47,6 +48,7 @@
   }
 }
 
+/* Define una animación de "desvanecimiento"(fade-out) con un ligero desplazamiento vertical y escalado. */
 @keyframes fade-out {
   from {
     opacity: 1;
@@ -60,6 +62,7 @@
 }
 
 /* Default View Transitions */
+/* Define las animaciones por defecto para las transiciones de vista de página completa. */
 ::view-transition-old(root) {
   animation: 0.5s cubic-bezier(0.33, 1, 0.68, 1) both fade-out;
 }
@@ -69,14 +72,33 @@
 }
 
 /* Persistent Elements */
+/* Configura elementos para que "persistan" o tengan transiciones especiales durante la navegación. */
+
+
+/* Cuando haya una transición de página con la clase navbar tanto la pagina de inicio como la de destino
+ mantendran el elemento con navbar intacto */
 .navbar {
   view-transition-name: navbar;
 }
 
+/* Cuando haya una transición de página con la clase nav-drawer-blur tanto la pagina de inicio como la de 
+ destino se le aplica una animación por defecto de blur */
+.nav-drawer-blur {
+  view-transition-name: nav-drawer-blur
+}
+
+.nav-drawer {
+  view-transition-name: nav-drawer
+}
+
+/* Cuando haya una transición de página con la clase footer tanto la pagina de inicio como la de destino
+ mantendran el elemento con footer intacto */
 .footer {
   view-transition-name: footer;
 }
 
+
+/* Desactiva las animaciones por defecto para la barra de navegación y el pie de página */
 ::view-transition-old(navbar),
 ::view-transition-new(navbar),
 ::view-transition-old(footer),
@@ -85,6 +107,7 @@
 }
 
 /* Reduced Motion Preferences */
+/* Adapta las animaciones para usuarios que prefieren movimiento reducido. */
 @media (prefers-reduced-motion: reduce) {
 
   ::view-transition,
